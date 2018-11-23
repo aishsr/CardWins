@@ -23,99 +23,7 @@ int RNG_value(int max, int min){
 int rng_value = min + rand() / (RAND_MAX / (max - min + 1) + 1);
 return rng_value;
 }
-//broken shuffle function
-//void shuffle(int array[], int size){
-//int j;
-//int array_max = size - 1;
-//for(int i = 0; i < size; i++){
-//	if(i == array_max){
-//		return;
-//	}
-//	j = RNG_value(array_max, i);
-//	if((i<=j) && (j < size)){
-//		swap(array[i], array[j]);
-//	}
-//}
-//}
 
-//
-//void shuffle(int array[], int size){
-//for(int i = 0; i < size; i++){
-//	cout<<array[i]<<endl;
-//}
-//int array_max = size - 1;
-//int j;
-//int tmp;
-//int arrcount[10];
-//for(int i = 0; i < 10; i++){
-//	arrcount[i] = 0;
-//}
-//int i = array_max;
-//while(i > 0){
-//	j = 1 + rand() / (RAND_MAX / ( 52 - 1 + 1) + 1);
-//	for(int k = 0; k < 10; k++){
-//	if(array[j] == 1){
-//		arrcount[0]++;
-//	}
-//	if(array[j] == 2){
-//		arrcount[1]++;
-//	}
-//	if(array[j] == 3){
-//		arrcount[2]++;
-//	}
-//	if(array[j] == 4){
-//		arrcount[3]++;
-//	}
-//	if(array[j] == 5){
-//		arrcount[4]++;
-//	}
-//	if(array[j] == 6){
-//		arrcount[5]++;
-//	}
-//	if(array[j] == 7){
-//		arrcount[6]++;
-//	}
-//	if(array[j] == 8){
-//		arrcount[7]++;
-//	}
-//	if(array[j] == 9){
-//		arrcount[8]++;
-//	}
-//	if(array[j] == 10){
-//		arrcount[9]++;
-//	}
-//	for(int k = 0; k < 9; k++){
-//		for(int m = 1; m < 10; m++){
-//			if((array[j] == m) && (arrcount[k] >= 4)){
-//				j = 1 + rand() / (RAND_MAX / (52 - 1 + 1) + 1);
-//			}
-//		}
-//	}
-//	if((array[j] == 10) && (arrcount[9] >= 16)){
-//		j = 1 + rand() / (RAND_MAX / (52 - 1 + 1) + 1);
-//	}
-//	for(int n = 0; n < 9; n++){
-//		if((array[j] == (n+1)) && (arrcount[n] <= 4)){
-//			cout<<"j : " <<j<<endl;
-//			swap( array[i] , array[j] );
-//			tmp = array[j];
-//			array[j] = array[i];
-//			array[i] = tmp;
-//			cout<<"array[i] : "<<array[i]<<endl;
-//			cout<<"array[j] : "<<array[j]<<endl;
-//			i--;
-//		}
-//		else if((array[j] == 10) && (arrcount[9] <= 16)){
-//			cout<<"j : " <<j<<endl;
-//			tmp = array[j];
-//			array[j] = array[i];
-//			array[i] = tmp;
-//			cout<<"array[i] : "<<array[i]<<endl;
-//			i--;
-//		}
-//	}
-//}
-//}
 void shuffle(int array[], int size){
 int j;
 int tmp;
@@ -135,30 +43,18 @@ return k;
 
 
 
-
+//MAIN
 int main(const int argc, const char* const argv[]){
 srand((unsigned int)time(NULL));
 int deck[52] = { 1 , 1 , 1 , 1 , 2 , 2 , 2 , 2 , 3 , 3 , 3 , 3 , 4 , 4 , 4 , 4 , 5 , 5 , 5 , 5 , 6 , 6 , 6 , 6 , 7 , 7 , 7 , 7 , 8 , 8 , 8 , 8 , 9 , 9 , 9 , 9 , 10 , 10 , 10 , 10 , 10 , 10 , 10 , 10 , 10 , 
 10 , 10 , 10 , 10 , 10 , 10 , 10};
 int value_in_hand = 0;
 int threshold;
-//cout<<"Please input a threshold: "<<endl;
-//cin>>threshold;
-//if(threshold < 1){
-//cerr<<"Not an acceptable threshold value"<<endl;
-//return -1;
-//}
+
 shuffle( deck , 52 );
-//cout<<"deck : "<<endl;
-//for(int i = 0; i < 52; i++){
-//	cout<<deck[i]<<endl;
-//}
+
 int j = 52;
-//for(int i = 0; i < 52; i++){
-//	value_in_hand = deal( deck , j) + value_in_hand;
-//	j--;
-//	cout<<"value in hand: " <<value_in_hand<<endl;
-//}
+
 int blackjackcount = 0;
 int bust = 0;
 //threshold = 10;
@@ -183,8 +79,8 @@ for(int i = 0; i < 10000; i++){
 	value_in_hand = 0;
 }
 float Bust_before_threshold = (float)bust / 10000;
-//cout<<"BlackJack: " <<blackjackcount<<endl;
-//cout<<"Bust: " <<bust<<endl;
+
+	
 cout<<"Threshold: 10 "<<" # of times busted before reaching threshold / # of games : " 
 <<Bust_before_threshold<<endl;
 j = 52;
@@ -379,33 +275,11 @@ cout<<"Threshold: 17 "<<" # of times busted before reaching threshold / # of gam
 bust = 0;
 value_in_hand = 0;
 j = 52;
-//for(int i = 0; i < 10000; i++){
-//	while(value_in_hand < 18){
-//		if(j==0){
-//			shuffle(deck,52);
-//			value_in_hand = 0;
-//			j = 52;
-//			cout<<j<<endl;
-//		}
-//		if((value_in_hand == 7) && (deal(deck,j) == 1)){
-//			value_in_hand == 18;
-//			j--;
-//			cout<<value_in_hand<<endl;
-//		}
-//		if(value_in_hand < 18){
-//			value_in_hand = value_in_hand + deal(deck,j);
-//			j--;
-//			cout<<value_in_hand<<endl;
-//		}
-//	}
-//	if(value_in_hand > 21){
-//		bust++;
-//	}
-//	value_in_hand = 0;
-//}
-//Bust_before_threshold = (float)bust / 10000;
-//cout<<"Threshold: 18 "<<" # of times busted before reaching threshold / # of games: "
-//<<Bust_before_threshold<<endl;
+
+	
+	
+	
+	
 bust = 0;
 value_in_hand = 0;
 j = 52;
@@ -553,7 +427,6 @@ for(int i = 0; i < 10000; i++){
 		if(j==0){
 			shuffle(deck, 46);
 			dealer_value_in_hand = 0;
-//			cout<<dealer_value_in_hand<<endl;
 			j = 46;
 		}
 		if((dealer_value_in_hand == 10) && (deal(deck, j) == 1) && (j > 0)){
